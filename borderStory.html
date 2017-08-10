@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div {
+				float: left;
+				margin-right: 20px;
+			}
+			/*梯形*/
+			.trapezoid {
+				border-bottom: 100px solid #4875e0;
+				border-left: 50px solid transparent;
+				border-right: 50px solid transparent;
+				height: 0;
+				width: 100px;
+				margin-bottom: 30PX;
+			}
+			/*平行四边形*/
+			.parallelogram {
+				width: 150px;
+				height: 100px;
+				-webkit-transform: skew(-20deg);
+				-moz-transform: skew(-20deg);
+				-ms-transform: skew(-20deg);
+				-o-transform: skew(-20deg);
+				transform: skew(-20deg);
+				background: #664875e09;
+				margin-left: 20px;
+			}
+			/*向上三角形*/
+			
+			.triangle-up {
+				width: 0;
+				height: 0;
+				border-left: 50px solid transparent;
+				border-right: 50px solid transparent;
+				border-bottom: 100px solid #4875e0;
+			}
+			/*向下三角*/
+			
+			.triangle-down {
+				width: 0;
+				height: 0;
+				border-left: 50px solid transparent;
+				border-right: 50px solid transparent;
+				border-top: 100px solid #4875e0;
+			}
+			/*向左三角*/
+			
+			.triangle-left {
+				width: 0;
+				height: 0;
+				border-top: 50px solid transparent;
+				border-right: 100px solid #4875e0;
+				border-bottom: 50px solid transparent;
+			}
+			/*向右三角*/
+			
+			.triangle-right {
+				width: 0;
+				height: 0;
+				border-top: 50px solid transparent;
+				border-left: 100px solid #4875e0;
+				border-bottom: 50px solid transparent;
+			}
+			/*上下三角*/
+			
+			.triangle-updown {
+				width: 0;
+				height: 0;
+				border-left: 50px solid transparent;
+				border-right: 50px solid transparent;
+				border-bottom: 100px solid #4875e0;
+				position: relative;
+				margin-bottom: 50px
+			}
+			
+			.triangle-updown:after {
+				content: " ";
+				width: 0;
+				height: 0;
+				border-left: 50px solid transparent;
+				border-right: 50px solid transparent;
+				border-top: 100px solid #4875e0;
+				position: absolute;
+				top: 50px;
+				left: -50px;
+			}
+			/*左上三角*/
+			
+			.triangle-topleft {
+				width: 0;
+				height: 0;
+				border-top: 100px solid #4875e0;
+				border-right: 100px solid transparent;
+			}
+			/*右上三角*/
+			
+			.triangle-topright {
+				width: 0;
+				height: 0;
+				border-top: 100px solid #4875e0;
+				border-left: 100px solid transparent;
+			}
+			/*左下三角*/
+			
+			.triangle-bottomleft {
+				width: 0;
+				height: 0;
+				border-bottom: 100px solid #4875e0;
+				border-right: 100px solid transparent;
+			}
+			/*右下三角*/
+			
+			.triangle-bottomright {
+				width: 0;
+				height: 0;
+				border-bottom: 100px solid #4875e0;
+				border-left: 100px solid transparent;
+			}
+			/*圆形 主要利用了css3.0的圆角属性 border-radius 适当的调整大小会有不同的效果*/
+			
+			.circle {
+				width: 100px;
+				height: 100px;
+				background: #4875e0;
+				-moz-border-radius: 50px;
+				-webkit-border-radius: 50px;
+				border-radius: 50px;
+			}
+			/*圆环*/
+			.circle-circle {
+				width: 100px;
+				height: 100px;
+				border: 20px solid #4875e0;
+				background: #fff;
+				-moz-border-radius: 100px;
+				-webkit-border-radius: 100px;
+				border-radius: 100px;
+			}
+			/*上半圆*/
+			.circle-up {
+				width: 100px;
+				height: 0px;
+				border: 0 solid transparent;
+				border-top: 100px solid #4875e0;
+				border-right: 100px solid #4875e0;
+				-moz-border-radius: 100px 100px 0 0;
+				-webkit-border-radius: 100px 100px 0 0;
+				border-radius: 100px 100px 0 0;
+			}
+			/*下半圆*/
+			.circle-down {
+				width: 100px;
+				height: 0px;
+				border: 0 solid transparent;
+				border-bottom: 100px solid #4875e0;
+				border-right: 100px solid #4875e0;
+				-moz-border-radius: 0 0 100px 100px;
+				-webkit-border-radius: 0 0 100px 100px;
+				border-radius: 0 0 100px 100px;
+			}
+			/*左半圆*/
+			.circle-left {
+				width: 100px;
+				height: 0px;
+				border: 0 solid transparent;
+				border-bottom: 100px solid #4875e0;
+				border-top: 100px solid #4875e0;
+				-moz-border-radius: 100px 0 0 100px;
+				-webkit-border-radius: 100px 0 0 100px;
+				border-radius: 100px 0 0 100px;
+			}
+			/*右半圆*/
+			.circle-right {
+				width: 100px;
+				height: 0px;
+				border: 0 solid transparent;
+				border-bottom: 100px solid #4875e0;
+				border-top: 100px solid #4875e0;
+				-moz-border-radius: 0 100px 100px 0;
+				-webkit-border-radius: 0 100px 100px 0;
+				border-radius: 0 100px 100px 0;
+			}
+			/*扇形*/
+			.circle-lefttop {
+				width: 100px;
+				height: 0px;
+				border: 0 solid transparent;
+				border-top: 100px solid #4875e0;
+				-moz-border-radius: 0 100px 100px 0;
+				-webkit-border-radius: 0 100px 100px 0;
+				border-radius: 100px 0 0 0;
+			}
+			
+			.circle-righttop {
+				width: 100px;
+				height: 0px;
+				border: 0 solid transparent;
+				border-top: 100px solid #4875e0;
+				-moz-border-radius: 0 100px 0 0;
+				-webkit-border-radius: 0 100px 0 0;
+				border-radius: 0 100px 0 0;
+			}
+			
+			.circle-rightbottom {
+				width: 100px;
+				height: 0px;
+				border: 0 solid transparent;
+				border-bottom: 100px solid #4875e0;
+				-moz-border-radius: 0 0 100px 0;
+				-webkit-border-radius: 0 0 100px 0;
+				border-radius: 0 0 100px 0;
+			}
+			
+			.circle-leftbottom {
+				width: 100px;
+				height: 0px;
+				border: 0 solid transparent;
+				border-bottom: 100px solid #4875e0;
+				-moz-border-radius: 0 0 0 100px;
+				-webkit-border-radius: 0 0 0 100px;
+				border-radius: 0 0 0 100px;
+			}
+			/*适当的调整边框宽度和圆角得到的效果*/
+			/*小胡子*/
+			.tail-lefttop {
+				border: 0 solid transparent;
+				border-top: 30px solid #4875e0;
+				-moz-border-radius: 100px 0 0 0;
+				-webkit-border-radius: 100px 0 0 0;
+				border-radius: 100px 0 0 0;
+				width: 100px;
+				height: 100px;
+			}
+			
+			.tail-righttop {
+				border: 0 solid transparent;
+				border-top: 30px solid #4875e0;
+				-moz-border-radius: 0 100px 0 0;
+				-webkit-border-radius: 0 100px 0 0;
+				border-radius: 0 100px 0 0;
+				width: 100px;
+				height: 100px;
+			}
+			
+			.tail-rightbottom {
+				border: 0 solid transparent;
+				border-bottom: 30px solid #4875e0;
+				-moz-border-radius: 0 0 100px 0;
+				-webkit-border-radius: 0 0 100px 0;
+				border-radius: 0 0 100px 0;
+				width: 100px;
+				height: 100px;
+				;
+			}
+			
+			.tail-leftbottom {
+				border: 0 solid transparent;
+				border-bottom: 30px solid #4875e0;
+				-moz-border-radius: 0 0 0 100px;
+				-webkit-border-radius: 0 0 0 100px;
+				border-radius: 0 0 0 100px;
+				width: 100px;
+				height: 100px;
+			}
+			/*消息框*/
+			.pop {
+				width: 200px;
+				height: 100px;
+				-moz-border-radius: 20px;
+				-webkit-border-radius: 20px;
+				border-radius: 20px;
+				background: #4875e0;
+				margin-top: 20px;
+				position: relative
+			}
+			
+			.pop:after {
+				content: "";
+				border: 0 solid transparent;
+				border-bottom: 30px solid #4875e0;
+				-moz-border-radius: 0 0 0 200px;
+				-webkit-border-radius: 0 0 0 200px;
+				border-radius: 0 0 0 200px;
+				width: 50px;
+				height: 50px;
+				position: relative;
+				margin-top: 20px;
+				-webkit-transform: rotate(-90deg);
+				-moz-transform: rotate(-90deg);
+				-ms-transform: rotate(-90deg);
+				-o-transform: rotate(-90deg);
+				position: absolute;
+				top: 50px;
+			}
+			
+			.oval-pop {
+				width: 200px;
+				height: 100px;
+				background: #4875e0;
+				-moz-border-radius: 100px / 50px;
+				-webkit-border-radius: 100px / 50px;
+				border-radius: 100px / 50px;
+				margin-bottom: 50px;
+				position: relative
+			}
+			
+			.oval-pop:after {
+				content: "";
+				border: 0 solid transparent;
+				border-bottom: 30px solid #4875e0;
+				-moz-border-radius: 0 0 0 200px;
+				-webkit-border-radius: 0 0 0 200px;
+				border-radius: 0 0 0 200px;
+				width: 50px;
+				height: 50px;
+				position: relative;
+				margin-top: 20px;
+				-webkit-transform: rotate(-90deg);
+				-moz-transform: rotate(-90deg);
+				-ms-transform: rotate(-90deg);
+				-o-transform: rotate(-90deg);
+				position: absolute;
+				top: 50px;
+				left: 20px
+			}
+			/*胶囊*/
+			.capsule {
+				border: 0 solid transparent;
+				-moz-border-radius: 100px;
+				-webkit-border-radius: 100px;
+				border-radius: 100px;
+				width: 200px;
+				height: 70px;
+				background: #4875e0;
+			}
+			
+			.v-capsule {
+				border: 0 solid transparent;
+				-moz-border-radius: 100px;
+				-webkit-border-radius: 100px;
+				border-radius: 100px;
+				width: 80px;
+				height: 200px;
+				background: #4875e0
+			}
+			
+			.up-capsule {
+				border: 0 solid transparent;
+				-moz-border-radius: 100px;
+				-webkit-border-radius: 100px;
+				border-radius: 100px 100px 0 0;
+				width: 70px;
+				height: 120px;
+				background: #4875e0;
+			}
+			
+			.r45-capsule {
+				border: 0 solid transparent;
+				-moz-border-radius: 100px;
+				-webkit-border-radius: 100px;
+				border-radius: 100px 100px 0 0;
+				width: 70px;
+				height: 120px;
+				background: #4875e0;
+				-moz-transform: rotate(45deg);
+				-ms-transform: rotate(45deg);
+				-o-transform: rotate(45deg);
+				-webkit-transform: rotate(45deg);
+				margin-left: 20px;
+			}
+			
+			.l45-capsule {
+				border: 0 solid transparent;
+				-moz-border-radius: 100px;
+				-webkit-border-radius: 100px;
+				border-radius: 100px 100px 0 0;
+				width: 70px;
+				height: 120px;
+				background: #4875e0;
+				-moz-transform: rotate(-45deg);
+				-ms-transform: rotate(-45deg);
+				-o-transform: rotate(-45deg);
+				-webkit-transform: rotate(-45deg);
+				margin-left: 20px;
+			}
+			
+			.lr45-capsule {
+				width: 160px;
+				height: 130px;
+				position: relative
+			}
+			
+			.lr45-capsule:before {
+				content: " ";
+				border: 0 solid transparent;
+				-moz-border-radius: 100px;
+				-webkit-border-radius: 100px;
+				border-radius: 100px 100px 0 0;
+				width: 80px;
+				height: 120px;
+				background: #4875e0;
+				-moz-transform: rotate(-45deg);
+				-ms-transform: rotate(-45deg);
+				-o-transform: rotate(-45deg);
+				-webkit-transform: rotate(-45deg);
+				position: absolute;
+				left: 20px;
+			}
+			
+			.lr45-capsule:after {
+				content: " ";
+				border: 0 solid transparent;
+				-moz-border-radius: 100px;
+				-webkit-border-radius: 100px;
+				border-radius: 100px 100px 0 0;
+				width: 80px;
+				height: 120px;
+				background: #4875e0;
+				-moz-transform: rotate(45deg);
+				-ms-transform: rotate(45deg);
+				-o-transform: rotate(45deg);
+				-webkit-transform: rotate(45deg);
+				position: absolute;
+				left: 160px;
+				top: 00px;
+			}
+			/*心形*/
+			.heart {
+				width: 160px;
+				height: 200px;
+				position: relative
+			}
+			
+			.heart:before {
+				content: " ";
+				border: 0 solid transparent;
+				-moz-border-radius: 100px;
+				-webkit-border-radius: 100px;
+				border-radius: 100px 100px 0 0;
+				width: 80px;
+				height: 120px;
+				background: #4875e0;
+				-moz-transform: rotate(-45deg);
+				-ms-transform: rotate(-45deg);
+				-o-transform: rotate(-45deg);
+				-webkit-transform: rotate(-45deg);
+				position: absolute;
+				left: 20px;
+			}
+			
+			.heart:after {
+				content: " ";
+				border: 0 solid transparent;
+				-moz-border-radius: 100px;
+				-webkit-border-radius: 100px;
+				border-radius: 100px 100px 0 0;
+				width: 80px;
+				height: 120px;
+				background: #4875e0;
+				-moz-transform: rotate(45deg);
+				-ms-transform: rotate(45deg);
+				-o-transform: rotate(45deg);
+				-webkit-transform: rotate(45deg);
+				position: absolute;
+				left: 48px;
+				top: 0px;
+			}
+			
+			.oval-pop {
+				width: 200px;
+				height: 100px;
+				background: #4875e0;
+				-moz-border-radius: 100px / 50px;
+				-webkit-border-radius: 100px / 50px;
+				border-radius: 100px / 50px;
+				margin-bottom: 50px;
+				position: relative
+			}
+			
+			.oval-pop:after {
+				content: "";
+				border: 0 solid transparent;
+				border-bottom: 30px solid #4875e0;
+				-moz-border-radius: 0 0 0 200px;
+				-webkit-border-radius: 0 0 0 200px;
+				border-radius: 0 0 0 200px;
+				width: 50px;
+				height: 50px;
+				position: relative;
+				margin-top: 20px;
+				-webkit-transform: rotate(-90deg);
+				-moz-transform: rotate(-90deg);
+				-ms-transform: rotate(-90deg);
+				-o-transform: rotate(-90deg);
+				position: absolute;
+				top: 50px;
+				left: 20px
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--梯形-->
+		<div class="trapezoid"></div>
+		<!--平行四边形-->
+		<div class="parallelogram"></div>
+		<!--三角形-->
+		<div class="triangle-up"></div>
+
+		<div class="triangle-down"></div>
+
+		<div class="triangle-left"></div>
+
+		<div class="triangle-right"></div>
+
+		<div class="triangle-updown"></div>
+
+		<div class="triangle-topleft "></div>
+
+		<div class="triangle-topright"></div>
+
+		<div class="triangle-bottomleft"></div>
+
+		<div class="triangle-bottomright "></div>
+
+		<div style="border-left:50px solid #060;border-right:50px solid #600;border-bottom:50px solid #f00;border-top:50px solid #00f;width:0px;height:0px;"></div>
+
+		<div class="circle"></div>
+
+		<div class="circle-circle"></div>
+
+		<div class="circle-up"></div>
+
+		<div class="circle-down "></div>
+
+		<div class="circle-left "></div>
+
+		<div class="circle-right "></div>
+
+		<div class="circle-lefttop "></div>
+
+		<div class="circle-righttop "></div>
+
+		<div class="circle-rightbottom  "></div>
+
+		<div class="circle-leftbottom  "></div>
+
+		<div class="tail-lefttop"></div>
+
+		<div class="tail-righttop"></div>
+
+		<div class="tail-rightbottom"></div>
+
+		<div class="tail-leftbottom"></div>
+
+		<div class="pop"></div>
+
+		<div class="oval-pop"></div>
+
+		<div class="capsule"></div>
+
+		<div class="v-capsule"></div>
+
+		<div class="up-capsule"></div>
+
+		<div class="r45-capsule"></div>
+
+		<div class="l45-capsule"></div>
+
+		<div class="lr45-capsule"></div>
+
+		<div class="heart"></div>
+
+	</body>
+
+</html>
